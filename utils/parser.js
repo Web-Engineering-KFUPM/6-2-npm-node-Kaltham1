@@ -1,11 +1,15 @@
-import _ from "lodash"
+import _ from "lodash";
 
- export function parseNumbers(input) {
-    const numbers = _.map(input, (str) => Number(str));
-        return _.compact(numbers);
-     }
+export function parseNumbers(input) {
+  const numbers = _.map(input, (str) => {
+    const num = Number(str);
+    return Number.isNaN(num) ? null : num;
+  });
 
- export function isValidOperation(operation) {
-    const validOps = ["add", "subtract", "multiply", "divide"];
-        return _.includes(validOps, operation);
-     }
+  return _.compact(numbers);
+}
+
+export function isValidOperation(operation) {
+  const validOps = ["add", "subtract", "multiply", "divide"];
+  return _.includes(validOps, operation);
+}
